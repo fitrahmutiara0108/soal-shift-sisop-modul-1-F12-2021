@@ -75,7 +75,7 @@ for (k in regArr){
   }
 }
 ```
-Lalu output dicetak pada file hasil.txt dengan format berikut.
+Lalu output dicetak pada file hasil.txt dengan format berikut. Total keuntungan ditampilkan dengan ketelitian 4 angka di belakang koma karena setelahnya hanya ada angka 0.
 ```
 printf "\nWilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.4f\n", leastReg, regMin;
 ```
