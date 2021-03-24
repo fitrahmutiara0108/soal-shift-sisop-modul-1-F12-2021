@@ -12,7 +12,7 @@
 -  Variabel segMin dan regMin diinisialisasi pada blok BEGIN untuk digunakan pada poin (c) dan (d).
 
 ### Poin (a)
-Profit percentage dari setiap record dicari sesuai dengan rumus yang tersedia pada modul. Jika profit percentage pada record tersebut lebih dari profit percentage maksimal dari record-record sebelumnya (maxPP), maka profit percentage record tersebut dijadikan nilai maxPP baru. Nomor barisnya dimasukkan ke dalam variabel maxID.
+Profit percentage dari setiap record dicari sesuai dengan rumus yang tersedia pada modul. Jika profit percentage pada record tersebut lebih dari (atau sama dengan, jika ada record yang lebih baru dengan profit percentage yang sama) profit percentage maksimal dari record-record sebelumnya (maxPP), maka profit percentage record tersebut dijadikan nilai maxPP baru. Nomor barisnya dimasukkan ke dalam variabel maxID.
 ```
 profitPercentage = (profit/(sales-profit))*100;
 if(profitPercentage >= maxPP){
@@ -35,8 +35,8 @@ if((city == "Albuquerque") && (substr(orderDate, length(orderDate)-1, 2) == "17"
 Lalu output dicetak pada file hasil.txt dengan format berikut. Nama customer yang dijadikan indeks array dicetak menggunakan loop.
 ```
 print "Daftar nama customer di Albuquerque pada tahun 2017 antara lain:"
-	for(i in arr) {
-		print i;
+for(i in arr) {
+	print i;
 }
 ```
 
@@ -49,10 +49,10 @@ Nama segment dengan transaksi paling sedikit dan jumlah transaksinya dimasukkan 
 ```
 for (j in segArr){
 	# print segArr[j]
-  if(segArr[j] < segMin){
-    segMin = segArr[j];
-    leastSeg = j;	
-  }
+	if(segArr[j] < segMin){
+		segMin = segArr[j];
+		leastSeg = j;	
+	}
 }
 ```
 Lalu output dicetak pada file hasil.txt dengan format berikut.
@@ -68,11 +68,11 @@ regArr[region] += profit;
 Nama region dengan keuntungan/profit paling sedikit dan jumlah keuntungannya dimasukkan ke dalam variabel menggunakan loop.
 ```
 for (k in regArr){
-  # print regArr[k]
-  if(regArr[k] < regMin){
-    regMin = regArr[k];
-    leastReg = k;	
-  }
+	# print regArr[k]
+	if(regArr[k] < regMin){
+		regMin = regArr[k];
+		leastReg = k;	
+	}
 }
 ```
 Lalu output dicetak pada file hasil.txt dengan format berikut. Total keuntungan ditampilkan dengan ketelitian 4 angka di belakang koma karena setelahnya hanya ada angka 0.
