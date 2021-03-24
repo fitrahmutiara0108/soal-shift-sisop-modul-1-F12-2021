@@ -1,4 +1,4 @@
-# Soal Shift Modul 1 Sisop 2021 (Kelompok F6)
+# Soal Shift Modul 1 Sisop 2021 (Kelompok F12)
 #### Nama anggota kelompok:
 - Farhan Arifandi (05111940000061)
 - Fitrah Mutiara (05111940000126)
