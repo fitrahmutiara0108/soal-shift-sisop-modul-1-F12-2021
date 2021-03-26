@@ -61,7 +61,7 @@ echo "$(grep -oE 'ERROR.*' syslog.log)" | grep -oE "([A-Z][a-z]+)\s(['A-Za-z]+\s
 ```
 
 ### Poin (e)
-Semua informasi yang didapatkan pada poin c dituliskan ke dalam file user_statistic.csv dengan header Username,INFO,ERROR diurutkan berdasarkan username secara ascending.
+Semua informasi yang didapatkan pada poin (c) dituliskan ke dalam file user_statistic.csv dengan header Username,INFO,ERROR diurutkan berdasarkan username secara ascending.
 Command:
 - Pertama header Username,INFO,ERROR ditambahkan pada file user_statistic.csv.
 - Iterasi menggunakan userList yang sudah diinisialisasi pada poin (c).
