@@ -17,7 +17,7 @@ done
 
 # Poin (d)
 echo "Error,Count" > error_message.csv
-echo "$(grep -oE 'ERROR.*' syslog.log)" | grep -oE "([A-Z][a-z]+)\s(['A-Za-z]+\s){1,6}" | sort | uniq |
+echo "$(grep -oE "ERROR\s([A-Z])([a-z]+)(\s[a-zA-Z']+){1,6}" syslog.log)" | sort | uniq |
     while read -r line
     do
         errCount=`grep -c "$line" syslog.log`
