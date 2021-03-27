@@ -172,3 +172,14 @@ cd $(dirname $0)
 zip -emqr Koleksi.zip ./Kucing* ./Kelinci* -P `date +"%m%d%Y"`
 ```
 Blok kode ini akan men-zip seluruh Folder yang memiliki awalan ```Kucing``` dan ```Kelinci```. Lalu hasil zip nya akan diberi password berupa tanggal saat ini. ```-emqr``` adalah argumen pada perintah zip agar proses zip dilakukan secara encrypted, quiet, recursive, lalu menghapus file asli nya.
+
+## Poin(e)
+Soal ini diminta untuk membuat script zip dan unzip untuk soal 3d berjalan sesuai jadwal yang diminta. 
+```
+0 7 * * 1-5 bash ~/soal-shift-sisop-modul-1-F12-2021/soal3/soal3d.sh
+```
+Perintah diatas akan membuat jadwal untuk menjalankan script ```soal3d.sh``` untuk membuat file ```.zip``` dari folder koleksi foto yang ada setiap jam 07.00 pada hari senin-jumat
+```
+0 18 * * 1-5 cd $(dirname $0); unzip -qP `date +"%m%d%Y"` Koleksi.zip && rm Koleksi.zip
+```
+Lalu perintah selanjutnya akan mengekstrak file ```Koleksi.zip``` dengan command ```unzip```. Password yang ada pada file tersebut akan dibuka dengan command ```-P``` yang password nya adalah tanggal saat file nya dibuat. Setelah unzip selesai, file yang berekstensi ```.zip``` akan dihapus melalui command ```rm```
