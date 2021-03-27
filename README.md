@@ -30,7 +30,6 @@ Menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user.
 Command:
 - cut memotong baris dari awal hingga ditemukan '(' sebagai delimiter, lalu hasilnya dipotong hingga ditemukan ')', menghasilkan string berupa username pengguna.
 - -d menandakan delimiter/batas antar field pada baris.
-- sort mengurutkan username hasil cut secara ascending.
 - sort mengurutkan baris hasil cut secara ascending, dan uniq mengabaikan baris duplikat.
 - grep menampilkan jumlah baris yang sesuai pola (Regex: INFO/ERROR diikuti apapun, dengan username yang sedang diiterasi di akhir baris)
 - Baris yang dicetak menampilkan username dan jumlah error/info.
