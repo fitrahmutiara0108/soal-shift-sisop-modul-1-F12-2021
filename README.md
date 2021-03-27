@@ -149,4 +149,26 @@ Lalu output dicetak pada file hasil.txt dengan format berikut. Total keuntungan 
 printf "\nWilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.4f\n", leastReg, regMin;
 ```
 
-## Soal 3
+# Soal 3
+## Poin (b) bash
+```
+folderName=$(date +"%d-%m-%Y")
+mkdir "$folderName"
+```
+Pada blok kode ini, kita membuat folder yang nama folder tersebut merupakan tanggal create nya
+
+```
+mv ./Koleksi_* "./$folderName/"
+mv ./Foto.log "./$folderName/"
+```
+Lalu selanjut nya, semua file Koleksi yang telah di download beserta ```Foto.log``` di pindahkan ke folder ```$foldername```
+
+## Poin (b) Cron
+
+## Poin (d)
+
+```
+cd $(dirname $0)
+zip -emqr Koleksi.zip ./Kucing* ./Kelinci* -P `date +"%m%d%Y"`
+```
+Blok kode ini akan men-zip seluruh Folder yang memiliki awalan ```Kucing``` dan ```Kelinci```. Lalu hasil zip nya akan diberi password berupa tanggal saat ini. ```-emqr``` adalah argumen pada perintah zip agar proses zip dilakukan secara encrypted, quiet, recursive, lalu menghapus file asli nya.
