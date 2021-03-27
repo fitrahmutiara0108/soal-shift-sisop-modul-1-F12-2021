@@ -163,7 +163,7 @@ mv ./Foto.log "./$folderName/"
 ```
 Lalu selanjut nya, semua file Koleksi yang telah di download beserta ```Foto.log``` di pindahkan ke folder ```$foldername```
 
-## Poin (b) Cron
+## Poin (b) cron
 
 ## Poin (d)
 
