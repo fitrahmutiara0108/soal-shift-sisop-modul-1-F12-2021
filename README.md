@@ -6,7 +6,7 @@
 
 ## Soal 1
 ### Poin (a)
-Mengumpulkan informasi jenis log (ERROR/INFO), pesan log, dan username pada setiap baris lognya dari file syslog.log dengan regex(regular expression). Hasil dimasukkan ke file logTest.txt.
+Mengumpulkan informasi jenis log (ERROR/INFO), pesan log, dan username pada setiap baris lognya dari file syslog.log dengan regex (regular expression). Hasil dimasukkan ke file logTest.txt.
 Command:
 - -o mencetak bagian dari baris yang sesuai dengan pola (Regex: INFO/ERROR diikuti spasi dan apapun hingga akhir baris).
 - -E menandakan bahwa pola yang diberikan merupakan extended regex pattern.
@@ -31,7 +31,7 @@ Command:
 - cut memotong baris dari awal hingga ditemukan '(' sebagai delimiter, lalu hasilnya dipotong hingga ditemukan ')', menghasilkan string berupa username pengguna.
 - -d menandakan delimiter/batas antar field pada baris.
 - sort mengurutkan username hasil cut secara ascending.
-- sort | uniq biasanya digunakan untuk menghapus duplikat pada file yang membutuhkan sorting
+- sort mengurutkan baris hasil cut secara ascending, dan uniq mengabaikan baris duplikat.
 - grep menampilkan jumlah baris yang sesuai pola (Regex: INFO/ERROR diikuti apapun, dengan username yang sedang diiterasi di akhir baris)
 - Baris yang dicetak menampilkan username dan jumlah error/info.
 ```
