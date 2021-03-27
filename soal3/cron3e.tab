@@ -1,0 +1,2 @@
+0 7 * * 1-5 bash ~/soal-shift-sisop-modul-1-F12-2021/soal3/soal3d.sh
+0 18 * * 1-5 cd $(dirname $0); unzip -qP `date +"%m%d%Y"` Koleksi.zip && rm Koleksi.zip
