@@ -151,7 +151,7 @@ printf "\nWilayah bagian (region) yang memiliki total keuntungan (profit) yang p
 
 ## Soal 3
 ### Poin (a)
-Total gambar yang diunduh adalah 23, berarti ada 23 iterasi dalam script. Jika nomor file <10 maka di depannya ditambahkan angka 0. Kemudian, gambar didownload dari https://loremflickr.com/320/240/kitten dengan nama file sesuai blok if, dan lognya disimpan dalam file Foto.log.
+Total gambar yang diunduh adalah 23, berarti ada 23 iterasi dalam script. Jika nomor file <10 maka di depannya ditambahkan angka 0. Kemudian, gambar didownload dari `https://loremflickr.com/320/240/kitten` dengan nama file sesuai blok if, dan lognya disimpan dalam file Foto.log.
 ```
 fileNum=1
 i=1
@@ -237,7 +237,7 @@ else
     folderName="Kucing_$today"
 fi
 ```
-Sama dengan poin (a), total gambar yang diunduh adalah 23, berarti ada 23 iterasi dalam script. Jika nomor file <10 maka di depannya ditambahkan angka 0. Kemudian, gambar didownload dari "https://loremflickr.com/320/240/" disambung dengan $download sesuai apa yang harus didownload hari ini (kitten/bunny), dengan nama file sesuai blok if, dan lognya disimpan dalam file Foto.log. Untuk setiap file yang tersimpan dari iterasi sebelum iterasi ini, dibandingkan dengan file yang di-download pada iterasi ini. Jika sama, maka perintah `cmp` akan mengeluarkan exit status 0, gambar yang di-download pada iterasi ini dihapus, hitungan nomor file dimundurkan 1, dan iterasi dihentikan. Jika file berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
+Sama dengan poin (a), total gambar yang diunduh adalah 23, berarti ada 23 iterasi dalam script. Jika nomor file <10 maka di depannya ditambahkan angka 0. Kemudian, gambar didownload dari `https://loremflickr.com/320/240/` disambung dengan $download sesuai apa yang harus didownload hari ini (kitten/bunny), dengan nama file sesuai blok if, dan lognya disimpan dalam file Foto.log. Untuk setiap file yang tersimpan dari iterasi sebelum iterasi ini, dibandingkan dengan file yang di-download pada iterasi ini. Jika sama, maka perintah `cmp` akan mengeluarkan exit status 0, gambar yang di-download pada iterasi ini dihapus, hitungan nomor file dimundurkan 1, dan iterasi dihentikan. Jika file berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
 ```
 fileNum=1
 i=1
