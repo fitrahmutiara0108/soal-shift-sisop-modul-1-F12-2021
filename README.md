@@ -150,36 +150,156 @@ printf "\nWilayah bagian (region) yang memiliki total keuntungan (profit) yang p
 ```
 
 ## Soal 3
+### Poin (a)
+```
+fileNum=1
+i=1
+while [ $i -le 23 ]
+do
+	if [ $i -lt 10 ]
+	then
+		fileName="Koleksi_0$fileNum.jpg"
+	else
+		fileName="Koleksi_$fileNum.jpg"
+	fi
+	
+	wget -O "$fileName" -a Foto.log https://loremflickr.com/320/240/kitten
+	...
+```
+Total gambar yang diunduh adalah 23, berarti ada 23 iterasi dalam script. Jika nomor file <10 maka di depannya ditambahkan angka 0. Kemudian, gambar didownload dari https://loremflickr.com/320/240/kitten dengan nama file sesuai blok if, dan lognya disimpan dalam file Foto.log.
+
+```
+	j=1
+	while [ $j -lt $i ]
+	do
+		if [ $j -lt 10 ]
+		then
+			cmpFile="Koleksi_0$j.jpg"
+		else
+			cmpFile="Koleksi_$j.jpg"
+		fi
+		
+		cmp $fileName $cmpFile
+		status=$?
+		
+		if [ $status -eq 0 ]
+		then
+			rm $fileName
+			fileNum=$((fileNum-1))
+			break
+		fi
+		j=$((j+1))
+	done
+	
+	fileNum=$((fileNum+1))
+	i=$((i+1))
+done
+```
+Untuk setiap file yang tersimpan dari iterasi sebelum iterasi ini, dibandingkan dengan file yang di-download pada iterasi ini. Jika sama, maka perintah `cmp` akan mengeluarkan exit status 0, gambar yang di-download pada iterasi ini dihapus, hitungan nomor file dimundurkan 1, dan iterasi dihentikan. Jika file berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
+
 ### Poin (b) bash
+```
+cd $(dirname $0)
+bash ./soal3a.sh
+```
+Pertama-tama masuk ke dalam direktori tempat disimpannya script, dan eksekusi script soal3a.sh untuk mendownload gambar.
 ```
 folderName=$(date +"%d-%m-%Y")
 mkdir "$folderName"
 ```
-Pada blok kode ini, kita membuat folder yang nama folder tersebut merupakan tanggal create nya
+Blok kode ini membuat folder yang namanya sesuai dengan tanggal dibuatnya folder tersebut.
 
 ```
 mv ./Koleksi_* "./$folderName/"
 mv ./Foto.log "./$folderName/"
 ```
-Lalu selanjut nya, semua file Koleksi yang telah di download beserta ```Foto.log``` di pindahkan ke folder ```$foldername```
+Lalu selanjutnya, semua file yang namanya diawali dengan "Koleksi_" yang telah di-download beserta `Foto.log` dipindahkan ke folder `$foldername`.
 
 ### Poin (b) cron
+```
+0 20 1-31/7,2-31/4 * * bash ~/soal-shift-sisop-modul-1-F12-2021/soal3/soal3b.sh
+```
+File soal3b.sh dijalankan pada jam 20.00 pada tanggal 1 dan setiap 7 hari setelahnya, serta pada tanggal 2 dan setiap 4 hari setelahnya.
+
+### Poin (c)
+```
+cd $(dirname $0)
+
+yesterday=$(date -d yesterday +"%d-%m-%Y")
+today=$(date +"%d-%m-%Y")
+
+if [ -d "Kucing_$yesterday" ]
+then
+    download="bunny"
+    folderName="Kelinci_$today"
+else
+    download="kitten"
+    folderName="Kucing_$today"
+fi
+```
+Pertama-tamma masuk ke dalam direktori tempat disimpannya script. Berdasarkan variabel `yesterday` dan `today` yang telah diinisialisasi, cek apakah folder Kucing dengan tanggal kemarin sudah ada. Jika ada, maka hari ini download foto kelinci. Jika tidak, maka hari ini download foto kucing.
+```
+fileNum=1
+i=1
+while [ $i -le 23 ]
+do
+	if [ $i -lt 10 ]
+	then
+		fileName="Koleksi_0$fileNum.jpg"
+	else
+		fileName="Koleksi_$fileNum.jpg"
+	fi
+	
+	wget -O "$fileName" -a Foto.log "https://loremflickr.com/320/240/$download"
+	
+	j=1
+	while [ $j -lt $i ]
+	do
+		if [ $j -lt 10 ]
+		then
+			cmpFile="Koleksi_0$j.jpg"
+		else
+			cmpFile="Koleksi_$j.jpg"
+		fi
+		
+		cmp $fileName $cmpFile
+		status=$?
+		
+		if [ $status -eq 0 ]
+		then
+			rm $fileName
+			fileNum=$((fileNum-1))
+			break
+		fi
+		j=$((j+1))
+	done
+	
+	fileNum=$((fileNum+1))
+	i=$((i+1))
+done
+```
+Sama dengan poin (a), total gambar yang diunduh adalah 23, berarti ada 23 iterasi dalam script. Jika nomor file <10 maka di depannya ditambahkan angka 0. Kemudian, gambar didownload dari "https://loremflickr.com/320/240/" disambung dengan $download sesuai apa yang harus didownload hari ini (kitten/bunny), dengan nama file sesuai blok if, dan lognya disimpan dalam file Foto.log. Untuk setiap file yang tersimpan dari iterasi sebelum iterasi ini, dibandingkan dengan file yang di-download pada iterasi ini. Jika sama, maka perintah `cmp` akan mengeluarkan exit status 0, gambar yang di-download pada iterasi ini dihapus, hitungan nomor file dimundurkan 1, dan iterasi dihentikan. Jika file berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
+
+```
+mkdir "$folderName"
+mv ./Koleksi_* "./$folderName/"
+mv ./Foto.log "./$folderName/"
+```
+Buat folder dengan nama sesuai $folderName yang didefinisikan pada blok if, lalu pindahkan semua file Koleksi_* dan Foto.log ke dalam folder tersebut.
 
 ### Poin (d)
-
 ```
 cd $(dirname $0)
 zip -emqr Koleksi.zip ./Kucing* ./Kelinci* -P `date +"%m%d%Y"`
 ```
-Blok kode ini akan men-zip seluruh Folder yang memiliki awalan ```Kucing``` dan ```Kelinci```. Lalu hasil zip nya akan diberi password berupa tanggal saat ini. ```-emqr``` adalah argumen pada perintah zip agar proses zip dilakukan secara encrypted, quiet, recursive, lalu menghapus file asli nya.
+Blok kode ini akan men-zip seluruh folder yang memiliki awalan Kucing dan Kelinci. Kemudian, hasil zip-nya akan diberi password berupa tanggal saat zip dibuat. `-emqr` adalah argumen pada perintah zip agar proses zip dilakukan secara encrypted, quiet (berjalan di latar belakang), recursive, lalu menghapus file aslinya.
 
-### Poin(e)
-Soal ini diminta untuk membuat script zip dan unzip untuk soal 3d berjalan sesuai jadwal yang diminta. 
+### Poin (e)
 ```
 0 7 * * 1-5 bash ~/soal-shift-sisop-modul-1-F12-2021/soal3/soal3d.sh
 ```
-Perintah diatas akan membuat jadwal untuk menjalankan script ```soal3d.sh``` untuk membuat file ```.zip``` dari folder koleksi foto yang ada setiap jam 07.00 pada hari senin-jumat
+Perintah di atas akan menjadwalkan eksekusi script soal3d.sh untuk membuat file .zip dari folder koleksi foto yang ada setiap hari Senin-Jumat jam 07.00. 
 ```
 0 18 * * 1-5 cd $(dirname $0); unzip -qP `date +"%m%d%Y"` Koleksi.zip && rm Koleksi.zip
 ```
-Lalu perintah selanjutnya akan mengekstrak file ```Koleksi.zip``` dengan command ```unzip```. Password yang ada pada file tersebut akan dibuka dengan command ```-P``` yang password nya adalah tanggal saat file nya dibuat. Setelah unzip selesai, file yang berekstensi ```.zip``` akan dihapus melalui command ```rm```
+Lalu perintah selanjutnya akan mengekstrak file `Koleksi.zip` dengan command `unzip` setiap hari Senin-Jumat jam 18.00, dengan melakukan `cd` terlebih dahulu ke direktori di mana file ini disimpan. Proses akan berjalan di latar belakang dan file akan di-unzip dengan password sesuai tanggal saat unzip dilakukan. Setelah unzip selesai, file yang berekstensi .zip akan dihapus melalui command `rm`.
