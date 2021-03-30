@@ -208,7 +208,7 @@ Blok kode ini membuat folder yang namanya sesuai dengan tanggal dibuatnya folder
 folderName=$(date +"%d-%m-%Y")
 mkdir "$folderName"
 ```
-Lalu selanjutnya, semua file yang namanya diawali dengan "Koleksi_" yang telah di-download beserta `Foto.log` dipindahkan ke folder `$foldername`.
+Lalu selanjutnya, semua file yang namanya diawali dengan "Koleksi_" yang telah di-download beserta Foto.log dipindahkan ke folder `$folderName`.
 ```
 mv ./Koleksi_* "./$folderName/"
 mv ./Foto.log "./$folderName/"
@@ -221,7 +221,7 @@ File soal3b.sh dijalankan pada jam 20.00 pada tanggal 1 dan setiap 7 hari setela
 ```
 
 ### Poin (c)
-Pertama-tamma masuk ke dalam direktori tempat disimpannya script. Berdasarkan variabel `yesterday` dan `today` yang telah diinisialisasi, cek apakah folder Kucing dengan tanggal kemarin sudah ada. Jika ada, maka hari ini download foto kelinci. Jika tidak, maka hari ini download foto kucing.
+Pertama-tama masuk ke dalam direktori tempat disimpannya script. Berdasarkan `$yesterday` dan `$today` yang telah diinisialisasi, cek apakah folder Kucing dengan tanggal kemarin sudah ada. Jika ada, maka hari ini download foto kelinci. Jika tidak, maka hari ini download foto kucing.
 ```
 cd $(dirname $0)
 
@@ -278,7 +278,7 @@ do
 	i=$((i+1))
 done
 ```
-Buat folder dengan nama sesuai $folderName yang didefinisikan pada blok if, lalu pindahkan semua file Koleksi_* dan Foto.log ke dalam folder tersebut.
+Buat folder dengan nama sesuai `$folderName` yang didefinisikan pada blok if, lalu pindahkan semua file Koleksi_* dan Foto.log ke dalam folder tersebut.
 ```
 mkdir "$folderName"
 mv ./Koleksi_* "./$folderName/"
@@ -297,7 +297,7 @@ Perintah di atas akan menjadwalkan eksekusi script soal3d.sh untuk membuat file 
 ```
 0 7 * * 1-5 bash ~/soal-shift-sisop-modul-1-F12-2021/soal3/soal3d.sh
 ```
-Lalu perintah selanjutnya akan mengekstrak file `Koleksi.zip` dengan command `unzip` setiap hari Senin-Jumat jam 18.00, dengan melakukan `cd` terlebih dahulu ke direktori di mana file ini disimpan. Proses akan berjalan di latar belakang dan file akan di-unzip dengan password sesuai tanggal saat unzip dilakukan. Setelah unzip selesai, file yang berekstensi .zip akan dihapus melalui command `rm`.
+Lalu perintah selanjutnya akan mengekstrak file Koleksi.zip dengan command `unzip` setiap hari Senin-Jumat jam 18.00, dengan melakukan `cd` terlebih dahulu ke direktori di mana file ini disimpan. `-qP` menandakan proses akan berjalan di latar belakang dan file akan di-unzip dengan password sesuai tanggal saat unzip dilakukan. Setelah unzip selesai, file Koleksi.zip dihapus dengan command `rm`.
 ```
 0 18 * * 1-5 cd $(dirname $0); unzip -qP `date +"%m%d%Y"` Koleksi.zip && rm Koleksi.zip
 ```
