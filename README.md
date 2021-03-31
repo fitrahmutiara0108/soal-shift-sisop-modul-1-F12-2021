@@ -293,7 +293,7 @@ zip -emqr Koleksi.zip ./Kucing* ./Kelinci* -P `date +"%m%d%Y"`
 ```
 
 ### Poin (e)
-Perintah di atas akan menjadwalkan eksekusi script soal3d.sh untuk membuat file .zip dari folder koleksi foto yang ada setiap hari Senin-Jumat jam 07.00. 
+Perintah di bawah akan menjadwalkan eksekusi script soal3d.sh untuk membuat file .zip dari folder koleksi foto yang ada setiap hari Senin-Jumat jam 07.00. 
 ```
 0 7 * * 1-5 bash ~/soal-shift-sisop-modul-1-F12-2021/soal3/soal3d.sh
 ```
