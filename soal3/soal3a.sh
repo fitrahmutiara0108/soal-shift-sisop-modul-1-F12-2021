@@ -21,6 +21,7 @@ do
 	do
 		if [ "${awk_array[j]}" == "${awk_array[$(($i-1))]}" ]
 		then
+			echo "SAMA"
 			check_eq=0
 		fi
 
