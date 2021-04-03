@@ -100,7 +100,7 @@ if(profitPercentage >= maxPP){
   maxPP = profitPercentage;
 }
 ```
-Lalu output ditambahkan pada file hasil.txt dengan format berikut.
+Lalu pada blok END, output ditambahkan pada file hasil.txt dengan format berikut.
 ```
 print "Transaksi terakhir dengan profit percentage terbesar yaitu " maxID" dengan persentase " maxPP "%.\n";
 ```
@@ -112,7 +112,7 @@ if((city == "Albuquerque") && (substr(orderDate, length(orderDate)-1, 2) == "17"
 		arr[customerName]=1;
 }
 ```
-Lalu output dicetak pada file hasil.txt dengan format berikut. Nama customer yang dijadikan indeks array dicetak menggunakan loop.
+Lalu pada blok END, output dicetak pada file hasil.txt dengan format berikut. Nama customer yang dijadikan indeks array dicetak menggunakan loop.
 ```
 print "Daftar nama customer di Albuquerque pada tahun 2017 antara lain:"
 for(i in arr) {
@@ -135,7 +135,7 @@ for (j in segArr){
 	}
 }
 ```
-Lalu output dicetak pada file hasil.txt dengan format berikut.
+Lalu pada blok END, output dicetak pada file hasil.txt dengan format berikut.
 ```
 print "\nTipe segmen customer yang penjualannya paling sedikit adalah " leastSeg " dengan " segMin " transaksi."
 ```
@@ -155,9 +155,24 @@ for (k in regArr){
 	}
 }
 ```
-Lalu output dicetak pada file hasil.txt dengan format berikut. Total keuntungan ditampilkan dengan ketelitian 4 angka di belakang koma karena setelahnya hanya ada angka 0.
+Lalu pada blok END, output dicetak pada file hasil.txt dengan format berikut. Total keuntungan ditampilkan dengan ketelitian 4 angka di belakang koma karena setelahnya hanya ada angka 0.
 ```
 printf "\nWilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.4f\n", leastReg, regMin;
+```
+
+Berikut isi file **hasil.txt** setelah eksekusi script **soal2_generate_laporan_ihir_shisop.sh**.
+```
+Transaksi terakhir dengan profit percentage terbesar yaitu 9952 dengan persentase 100%.
+
+Daftar nama customer di Albuquerque pada tahun 2017 antara lain:
+Benjamin Farhat
+David Wiener
+Michelle Lonsdale
+Susan Vittorini
+
+Tipe segmen customer yang penjualannya paling sedikit adalah Home Office dengan 1783 transaksi.
+
+Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah Central dengan total keuntungan 39706.3625
 ```
 
 ## Soal 3
