@@ -99,7 +99,7 @@ BEGIN{
 	regMin=1000000000000000;
 }
 ```
-- Sebelum memulai pengerjaan soal poin (a), data dalam masing-masing field/kolom tiap record/baris dimasukkan ke dalam variabel sesuai nama kolom untuk mempermudah pengerjaan.
+- Sebelum memulai pengerjaan soal poin (a), data dalam masing-masing field/kolom tiap record/baris dimasukkan ke dalam variabel sesuai nama kolom untuk mempermudah pengerjaan. Karena baris pertama merupakan header maka pemrosesan data dimulai dari baris ke-2.
 ```
 (NR>1) {
 	rowID = $1;
