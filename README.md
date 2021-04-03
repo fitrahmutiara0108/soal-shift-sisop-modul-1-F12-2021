@@ -87,9 +87,44 @@ done | sort >> user_statistic.csv;
 - Kesalahan sintaks pada poin (c), sehingga ketika username 'ac' diiterasi, grep akan mengambil seluruh username yang mengandung (bukan yang tepat hanya berisi) 'ac'.
 
 ## Soal 2
-- Sebelum memulai pengerjaan soal poin (a), data dalam masing-masing kolom tiap baris dimasukkan ke dalam variabel sesuai nama kolom untuk mempermudah pengerjaan.
 - `$LC_NUMERIC` diubah menjadi en_US.UTF-8 agar angka desimal yang dipisahkan dengan titik dalam file **Laporan-TokoShiSop.tsv** bisa langsung diproses tanpa perlu diubah menjadi koma terlebih dahulu.
--  Variabel segMin dan regMin diinisialisasi pada blok BEGIN untuk digunakan pada poin (c) dan (d).
+- Field separator adalah tab ('\t') karena file dataset berekstensi .tsv (tab-separated values).
+```
+awk -F '\t'
+```
+- Variabel segMin dan regMin diinisialisasi pada blok BEGIN untuk digunakan pada poin (c) dan (d).
+```
+BEGIN{
+	segMin=10000;
+	regMin=1000000000000000;
+}
+```
+- Sebelum memulai pengerjaan soal poin (a), data dalam masing-masing field/kolom tiap record/baris dimasukkan ke dalam variabel sesuai nama kolom untuk mempermudah pengerjaan.
+```
+(NR>1) {
+	rowID = $1;
+	orderID = $2;
+	orderDate = $3;
+	shipDate = $4;
+	shipMode = $5;
+	customerID = $6;
+	customerName = $7;
+	segment = $8;
+	country = $9;
+	city = $10;
+	state = $11;
+	postalCode = $12;
+	region = $13;
+	productID = $14;
+	category = $15;
+	subcategory = $16;
+	productName = $17;
+	sales = $18;
+	quantity = $19;
+	discount = $20;
+	profit = $21;
+	...
+```
 
 ### Poin (a)
 Profit percentage dari setiap record dicari sesuai dengan rumus yang tersedia pada modul. Jika profit percentage pada record tersebut lebih dari (atau sama dengan, jika ada record yang lebih baru dengan profit percentage yang sama) profit percentage maksimal dari record-record sebelumnya (maxPP), maka profit percentage record tersebut dijadikan nilai maxPP baru. Nomor barisnya dimasukkan ke dalam variabel maxID.
