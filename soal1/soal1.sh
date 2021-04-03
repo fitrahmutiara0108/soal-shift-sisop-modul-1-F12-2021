@@ -28,5 +28,5 @@ echo "$(grep -oE 'ERROR.*' syslog.log)" | grep -oE "([A-Z][a-z]+)\s(['A-Za-z]+\s
 echo "Username,INFO,ERROR" > user_statistic.csv
 for user in $userList
 do
-    printf "%s,%d,%d\n" $user $(grep -cP "INFO.*($user)" syslog.log) $(grep -cP "ERROR.*($user)" syslog.log);
+    printf "%s,%d,%d\n" $user $(grep -cP "INFO.*(\b$user\b)" syslog.log) $(grep -cP "ERROR.*(\b$user\b)" syslog.log);
 done | sort >> user_statistic.csv;
