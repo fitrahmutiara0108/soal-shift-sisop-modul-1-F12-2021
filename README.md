@@ -10,9 +10,13 @@ Mengumpulkan informasi jenis log (ERROR/INFO), pesan log, dan username pada seti
 Command:
 - -o mencetak bagian dari baris yang sesuai dengan pola (Regex: INFO/ERROR diikuti spasi dan apapun hingga akhir baris).
 - -E menandakan bahwa pola yang diberikan merupakan extended regex pattern.
+- Output dicetak ke dalam file logTest.txt untuk debug (tidak ada dalam soal, tetapi output command tidak muncul di terminal).
 ```
 grep -oE 'INFO\s.*|ERROR\s.*' syslog.log > logTest.txt
 ```
+
+Contoh output 1(a) pada file **logTest.txt** -- total 100 baris.<br>
+[![logTest.txt](https://iili.io/qUvYAl.md.png)](https://iili.io/qUvYAl.png)
 
 ### Poin (b)
 Menampilkan semua pesan error yang muncul beserta jumlah kemunculannya.
@@ -24,6 +28,8 @@ Command:
 grep -oE "ERROR\s([A-Z])([a-z]+)(\s[a-zA-Z']+){1,6}" syslog.log;
 printf "Total: %d\n" $(grep -c "ERROR" syslog.log);
 ```
+Output 1(b) di terminal:<br>
+[![Output 1b](https://iili.io/qUv0o7.md.png)](https://iili.io/qUv0o7.png)
 
 ### Poin (c)
 Menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user.
@@ -31,7 +37,7 @@ Command:
 - cut memotong baris dari awal hingga ditemukan '(' sebagai delimiter, lalu hasilnya dipotong hingga ditemukan ')', menghasilkan string berupa username pengguna.
 - -d menandakan delimiter/batas antar field pada baris.
 - sort mengurutkan baris hasil cut secara ascending, dan uniq mengabaikan baris duplikat.
-- grep menampilkan jumlah baris yang sesuai pola (Regex: INFO/ERROR diikuti apapun, dengan username yang sedang diiterasi di akhir baris)
+- grep menampilkan jumlah baris yang sesuai pola (Regex: INFO/ERROR diikuti apapun, dengan username yang sedang diiterasi di akhir baris, `\b` untuk pembatas agar username yang diambil tepat sesuai dengan username yang sedang diiterasi)
 - Baris yang dicetak menampilkan username dan jumlah error/info.
 ```
 userList=`cut -d"(" -f2 < syslog.log | cut -d")" -f1 | sort | uniq`
@@ -41,6 +47,8 @@ do
     printf "%s, Error: %d, Info: %d\n" $user $(grep -cP "ERROR.*(\b$user\b)" syslog.log) $(grep -cP "INFO.*(\b$user\b)" syslog.log);
 done
 ```
+Output 1(c) di terminal:<br>
+[![Output 1c](https://iili.io/qUvwNV.png)](https://iili.io/qUvwNV.png)
 
 ### Poin (d)
 Semua informasi yang didapatkan pada poin (b) dituliskan ke dalam file error_message.csv dengan header Error,Count yang kemudian diikuti oleh daftar pesan error dan jumlah kemunculannya diurutkan berdasarkan jumlah kemunculan pesan error dari yang terbanyak.
@@ -71,12 +79,12 @@ Command:
 echo "Username,INFO,ERROR" > user_statistic.csv
 for user in $userList
 do
-    printf "%s,%d,%d\n" $user $(grep -cP "INFO.*($user)" syslog.log) $(grep -cP "ERROR.*($user)" syslog.log);
+    printf "%s,%d,%d\n" $user $(grep -cP "INFO.*(\b$user\b)" syslog.log) $(grep -cP "ERROR.*(\b$user\b)" syslog.log);
 done | sort >> user_statistic.csv;
 ```
 ### Error/kendala selama pengerjaan
 ![Screenshot (935)](https://user-images.githubusercontent.com/81247727/113465719-94d9b900-9460-11eb-8e45-d1ed4efa4839.png)
-- Kesalahan sintaks pada poin c
+- Kesalahan sintaks pada poin (c), sehingga ketika username 'ac' diiterasi, grep akan mengambil seluruh username yang mengandung (bukan yang tepat hanya berisi) 'ac'.
 
 ## Soal 2
 - Sebelum memulai pengerjaan soal poin (a), data dalam masing-masing kolom tiap baris dimasukkan ke dalam variabel sesuai nama kolom untuk mempermudah pengerjaan.
@@ -304,3 +312,5 @@ Lalu perintah selanjutnya akan mengekstrak file Koleksi.zip dengan command `unzi
 ```
 0 18 * * 1-5 cd $(dirname $0); unzip -qP `date +"%m%d%Y"` Koleksi.zip && rm Koleksi.zip
 ```
+### Error/kendala selama pengerjaan
+- Setelah revisi, baru diketahui bahwa untuk membandingkan kedua gambar harus menggunakan AWK, sehingga script poin (a) harus diperbaiki.
