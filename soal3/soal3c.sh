@@ -25,22 +25,21 @@ do
 		fileName="Koleksi_$fileNum.jpg"
 	fi
 	
-	wget -O "$fileName" -a Foto.log "https://loremflickr.com/320/240/$download"
+	wget -O "$fileName" -a Foto.log https://loremflickr.com/320/240/kitten
 	
-	j=1
-	while [ $j -lt $i ]
+	check_eq=1
+	awk_array=($(awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}' ./Foto.log))
+
+	j=0
+	while [ $j -lt $(($i-1)) ]
 	do
-		if [ $j -lt 10 ]
+		if [ "${awk_array[j]}" == "${awk_array[$(($i-1))]}" ]
 		then
-			cmpFile="Koleksi_0$j.jpg"
-		else
-			cmpFile="Koleksi_$j.jpg"
+			echo "SAMA"
+			check_eq=0
 		fi
-		
-		cmp $fileName $cmpFile
-		status=$?
-		
-		if [ $status -eq 0 ]
+
+		if [ $check_eq -eq 0 ]
 		then
 			rm $fileName
 			fileNum=$((fileNum-1))
