@@ -74,6 +74,9 @@ do
     printf "%s,%d,%d\n" $user $(grep -cP "INFO.*($user)" syslog.log) $(grep -cP "ERROR.*($user)" syslog.log);
 done | sort >> user_statistic.csv;
 ```
+### Error/kendala selama pengerjaan
+![Screenshot (935)](https://user-images.githubusercontent.com/81247727/113465719-94d9b900-9460-11eb-8e45-d1ed4efa4839.png)
+- Kesalahan sintaks pada poin c
 
 ## Soal 2
 - Sebelum memulai pengerjaan soal poin (a), data dalam masing-masing kolom tiap baris dimasukkan ke dalam variabel sesuai nama kolom untuk mempermudah pengerjaan.
