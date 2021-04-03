@@ -12,7 +12,7 @@ userList=`cut -d"(" -f2 < syslog.log | cut -d")" -f1 | sort | uniq`
 
 for user in $userList
 do
-    printf "%s, Error: %d, Info: %d\n" $user $(grep -cP "INFO.*($user)" syslog.log) $(grep -cP "ERROR.*($user)" syslog.log);
+    printf "%s, Error: %d, Info: %d\n" $user $(grep -cP "ERROR.*(\b$user\b)" syslog.log) $(grep -cP "INFO.*(\b$user\b)" syslog.log);
 done
 
 # Poin (d)
