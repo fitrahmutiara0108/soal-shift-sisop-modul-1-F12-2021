@@ -83,8 +83,8 @@ do
 done | sort >> user_statistic.csv;
 ```
 ### Error/kendala selama pengerjaan
-![Screenshot (935)](https://user-images.githubusercontent.com/81247727/113465719-94d9b900-9460-11eb-8e45-d1ed4efa4839.png)
-- Kesalahan sintaks pada poin (c), sehingga ketika username 'ac' diiterasi, grep akan mengambil seluruh username yang mengandung (bukan yang tepat hanya berisi) 'ac'.
+![image](https://user-images.githubusercontent.com/81247727/113501734-afd82600-9551-11eb-812c-8d524fe36e74.png)
+- Kesalahan sintaks pada poin (c), sehingga ketika username 'ac' diiterasi, grep akan mengambil seluruh username yang mengandung (bukan yang tepat hanya berisi) 'ac'. Selain itu output dari error dan info terbalik, ex: username ahmed.miller harusnya memunculkan error sebanyak 4 dan info sebanyak 2.
 
 ## Soal 2
 - `$LC_NUMERIC` diubah menjadi en_US.UTF-8 agar angka desimal yang dipisahkan dengan titik dalam file **Laporan-TokoShiSop.tsv** bisa langsung diproses tanpa perlu diubah menjadi koma terlebih dahulu.
