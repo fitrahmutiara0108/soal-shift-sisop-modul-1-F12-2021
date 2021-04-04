@@ -154,6 +154,13 @@ for(i in arr) {
 	print i;
 }
 ```
+Nama customer yang tercetak oleh command tersebut adalah:
+| Nama Customer |
+| ------------- |
+| Benjamin Farhat |
+| David Wiener |
+| Michelle Lonsdale |
+| Susan Vittorini |
 
 ### Poin (c)
 Untuk setiap segment, nama segment dijadikan sebagai indeks array dan isinya diincrement setiap kali segment tersebut terbaca pada input.
