@@ -228,7 +228,7 @@ do
 	wget -O "$fileName" -a Foto.log https://loremflickr.com/320/240/kitten
 	...
 ```
-Blok dibawah ini akan menyimpan setiap hasil string `awk /https:\/\/loremflickr.com\/cache\/resized\// {print $3}` dari file Foto.log ke array `awk_array`. Array tersebut akan dgunakan untuk membandingkan hasil setiap awk pada array dengan array urutan terakhir. Dimulai dengan variabel `check_eq=1` sebagai flag. Lalu akan diiterasi mulai dari 0 sampai `$i-1`. Jika hasil string sama, maka print `"SAMA"` dan ubah value `check_eq` menjadi 0. Jika value `check_eq` sama dengan 0 maka hapus file yg terakhir didownload. Lalu variabel `fileNum` akan dimundurkan 1 agar penamaan file setelah ada yang dihapus tidak melompat. Jika hasil string berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
+Blok dibawah ini akan menyimpan setiap hasil string `awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}'` dari file Foto.log ke array `awk_array`. Array tersebut akan dgunakan untuk membandingkan hasil setiap awk pada array dengan array urutan terakhir. Dimulai dengan variabel `check_eq=1` sebagai flag. Lalu akan diiterasi mulai dari 0 sampai `$i-1`. Jika hasil string sama, maka print `"SAMA"` dan ubah value `check_eq` menjadi 0. Jika value `check_eq` sama dengan 0 maka hapus file yg terakhir didownload. Lalu variabel `fileNum` akan dimundurkan 1 agar penamaan file setelah ada yang dihapus tidak melompat. Jika hasil string berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
 
 ```
 	check_eq=1
