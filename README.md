@@ -264,9 +264,9 @@ Gambar dibawah menunjukkan log dari file yand telah di download. Perintah `awk` 
 
 ![foto3_1png](https://user-images.githubusercontent.com/75016595/113506804-1de01580-9571-11eb-8c3f-36002e6d9a3b.png)
 
-Berikut adalah output yang diberikan jika ada file yang sama
+Berikut adalah output yang diberikan jika ada file yang baru didwonload sama dengan file sebelumnya
 
-![foto3_2](https://user-images.githubusercontent.com/75016595/113507044-6a782080-9572-11eb-9d79-3d543c884f48.png)
+![foto3_2](https://user-images.githubusercontent.com/75016595/113507148-f1c59400-9572-11eb-85aa-e39de4149d92.png)
 
 ### Poin (b) - bash
 Pertama-tama masuk ke dalam direktori tempat disimpannya script, dan eksekusi script soal3a.sh untuk mendownload gambar.
