@@ -264,7 +264,7 @@ Gambar dibawah menunjukkan log dari file yand telah di download. Perintah `awk` 
 
 ![foto3_1png](https://user-images.githubusercontent.com/75016595/113506804-1de01580-9571-11eb-8c3f-36002e6d9a3b.png)
 
-Berikut adalah output yang diberikan jika ada file yang baru didwonload ada yang sama dengan hasil download sebelumnya
+Berikut adalah output yang diberikan jika ada file yang baru didwonload sama dengan hasil download sebelumnya
 
 ![foto3_2](https://user-images.githubusercontent.com/75016595/113507148-f1c59400-9572-11eb-85aa-e39de4149d92.png)
 
