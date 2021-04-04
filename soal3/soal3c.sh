@@ -18,7 +18,7 @@ fileNum=1
 i=1
 while [ $i -le 23 ]
 do
-	if [ $i -lt 10 ]
+	if [ $fileNum -lt 10 ]
 	then
 		fileName="Koleksi_0$fileNum.jpg"
 	else
@@ -27,7 +27,7 @@ do
 	
 	wget -O "$fileName" -a Foto.log https://loremflickr.com/320/240/$download
 	
-	check_eq=1
+	check_eq=0
 	awk_array=($(awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}' ./Foto.log))
 
 	j=0
@@ -36,10 +36,10 @@ do
 		if [ "${awk_array[j]}" == "${awk_array[$(($i-1))]}" ]
 		then
 			echo "SAMA"
-			check_eq=0
+			check_eq=1
 		fi
 
-		if [ $check_eq -eq 0 ]
+		if [ $check_eq -eq 1 ]
 		then
 			rm $fileName
 			fileNum=$((fileNum-1))
