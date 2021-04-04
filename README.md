@@ -218,7 +218,7 @@ fileNum=1
 i=1
 while [ $i -le 23 ]
 do
-	if [ $i -lt 10 ]
+	if [ $fileNum -lt 10 ]
 	then
 		fileName="Koleksi_0$fileNum.jpg"
 	else
@@ -232,10 +232,10 @@ Blok berikut:
 ```
 awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}'
 ```
-akan mengambil data filename dari server pada file Foto.log ke array `awk_array`. Array tersebut akan dgunakan untuk membandingkan hasil setiap elemen array saat diiterasi dengan array urutan terakhir. Dimulai dengan variabel `check_eq=1` sebagai flag, lalu akan diiterasi mulai dari 0 sampai `$i-1`. Jika filename sama, maka file yang di-download juga sama. Cetak `"SAMA"` dan ubah nilai flag `check_eq` menjadi 0. Jika value `check_eq` sama dengan 0 maka hapus file yang terakhir di-download. Lalu variabel `fileNum` akan dimundurkan 1 agar penamaan file setelah ada yang dihapus tidak melompat. Jika hasil string berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
+akan mengambil data filename dari server pada file Foto.log ke array `awk_array`. Array tersebut akan dgunakan untuk membandingkan hasil setiap elemen array saat diiterasi dengan array urutan terakhir. Dimulai dengan variabel `check_eq=0` sebagai flag, lalu akan diiterasi mulai dari 0 sampai `$i-1`. Jika filename sama, maka file yang di-download juga sama. Cetak `"SAMA"` dan ubah nilai flag `check_eq` menjadi 1. Jika value `check_eq` sama dengan 1 maka hapus file yang terakhir di-download. Lalu variabel `fileNum` akan dimundurkan 1 agar penamaan file setelah ada yang dihapus tidak melompat. Jika hasil string berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
 
 ```
-	check_eq=1
+	check_eq=0
 	awk_array=($(awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}' ./Foto.log))
 
 	j=0
@@ -244,10 +244,10 @@ akan mengambil data filename dari server pada file Foto.log ke array `awk_array`
 		if [ "${awk_array[j]}" == "${awk_array[$(($i-1))]}" ]
 		then
 			echo "SAMA"
-			check_eq=0
+			check_eq=1
 		fi
 
-		if [ $check_eq -eq 0 ]
+		if [ $check_eq -eq 1 ]
 		then
 			rm $fileName
 			fileNum=$((fileNum-1))
@@ -305,13 +305,13 @@ Sama dengan poin (a), total gambar yang diunduh adalah 23, berarti ada 23 iteras
 ```
 awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}'
 ```
-akan mengambil data filename dari server pada file Foto.log ke array `awk_array`. Array tersebut akan dgunakan untuk membandingkan hasil setiap elemen array saat diiterasi dengan array urutan terakhir. Dimulai dengan variabel `check_eq=1` sebagai flag, lalu akan diiterasi mulai dari 0 sampai `$i-1`. Jika filename sama, maka file yang di-download juga sama. Cetak `"SAMA"` dan ubah nilai flag `check_eq` menjadi 0. Jika value `check_eq` sama dengan 0 maka hapus file yang terakhir di-download. Lalu variabel `fileNum` akan dimundurkan 1 agar penamaan file setelah ada yang dihapus tidak melompat. Jika hasil string berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
+akan mengambil data filename dari server pada file Foto.log ke array `awk_array`. Array tersebut akan dgunakan untuk membandingkan hasil setiap elemen array saat diiterasi dengan array urutan terakhir. Dimulai dengan variabel `check_eq=0` sebagai flag, lalu akan diiterasi mulai dari 0 sampai `$i-1`. Jika filename sama, maka file yang di-download juga sama. Cetak `"SAMA"` dan ubah nilai flag `check_eq` menjadi 1. Jika value `check_eq` sama dengan 1 maka hapus file yang terakhir di-download. Lalu variabel `fileNum` akan dimundurkan 1 agar penamaan file setelah ada yang dihapus tidak melompat. Jika hasil string berbeda, iterasi dilanjutkan dan hitungan nomor file dinaikkan untuk dibawa ke iterasi selanjutnya.
 ```
 fileNum=1
 i=1
 while [ $i -le 23 ]
 do
-	if [ $i -lt 10 ]
+	if [ $fileNum -lt 10 ]
 	then
 		fileName="Koleksi_0$fileNum.jpg"
 	else
@@ -320,7 +320,7 @@ do
 	
 	wget -O "$fileName" -a Foto.log https://loremflickr.com/320/240/$download
 	
-	check_eq=1
+	check_eq=0
 	awk_array=($(awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}' ./Foto.log))
 
 	j=0
@@ -329,10 +329,10 @@ do
 		if [ "${awk_array[j]}" == "${awk_array[$(($i-1))]}" ]
 		then
 			echo "SAMA"
-			check_eq=0
+			check_eq=1
 		fi
 
-		if [ $check_eq -eq 0 ]
+		if [ $check_eq -eq 1 ]
 		then
 			rm $fileName
 			fileNum=$((fileNum-1))
