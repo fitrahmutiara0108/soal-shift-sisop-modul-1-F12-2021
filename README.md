@@ -260,6 +260,13 @@ akan mengambil data filename dari server pada file Foto.log ke array `awk_array`
 	i=$((i+1))
 done
 ```
+Gambar dibawah menunjukkan log dari file yand telah di download. Perintah `awk` akan membandingkan setiap baris yang memiliki pola `https://loremflickr.com/cache/resized`. Contoh pola tersebut pada hasil download ke-satu terdapat di baris ke-6. Pada baris kedua pola nya ada di baris ke-21. Dan yang akan diinput ke array `awk_array` adalah argumen ke-3 dari setiap pola barisan.
+
+![foto3_1png](https://user-images.githubusercontent.com/75016595/113506804-1de01580-9571-11eb-8c3f-36002e6d9a3b.png)
+
+Berikut adalah output yang diberikan jika ada file yang sama
+
+![foto3_2](https://user-images.githubusercontent.com/75016595/113507044-6a782080-9572-11eb-9d79-3d543c884f48.png)
 
 ### Poin (b) - bash
 Pertama-tama masuk ke dalam direktori tempat disimpannya script, dan eksekusi script soal3a.sh untuk mendownload gambar.
