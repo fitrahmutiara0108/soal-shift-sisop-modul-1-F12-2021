@@ -25,7 +25,7 @@ do
 		fileName="Koleksi_$fileNum.jpg"
 	fi
 	
-	wget -O "$fileName" -a Foto.log https://loremflickr.com/320/240/kitten
+	wget -O "$fileName" -a Foto.log https://loremflickr.com/320/240/$download
 	
 	check_eq=1
 	awk_array=($(awk '/https:\/\/loremflickr.com\/cache\/resized\// {print $3}' ./Foto.log))
