@@ -370,3 +370,4 @@ Lalu perintah selanjutnya akan mengekstrak file Koleksi.zip dengan command `unzi
 ```
 ### Error/kendala selama pengerjaan
 - Setelah revisi, baru diketahui bahwa untuk membandingkan kedua gambar harus menggunakan AWK, sehingga script poin (a) harus diperbaiki.
+- Sempat terkendala dalam penghapusan file yang sama pada beberapa kali percobaan.
